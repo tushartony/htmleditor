@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<style>
+#firstMyMap{
+    width: 100%;
+    position: absolute;
+    height: 100%;
+	
+    box-sizing: border-box;
+}
+
+#upload{
+    width: 25%;
+    top: 29%;
+    left: 4%;
+    position: absolute;
+    height: 16%;
+	cursor: pointer;
+    border: 1px solid #00BCD4;
+  
+	background-image: url("upload.png");
+	background-size: 50px 50px;
+    background-repeat: no-repeat;
+}
+#download{
+    width: 25%;
+    top: 29%;
+    left: 36%;
+    position: absolute;
+    height: 16%;
+	cursor: pointer;
+    border: 1px solid #00BCD4;
+    box-sizing: border-box;
+	background-image: url("download.png");
+	background-size: 50px 50px;
+    background-repeat: no-repeat;
+}
+#play{/* play option*/
+    width: 150px;
+    top: 29%;
+    left: 69%;
+    position: absolute;
+    height: 100px;
+	cursor: pointer;
+    border: 1px solid black;
+    box-sizing: border-box;
+	background-image: url("http://www.clipartbest.com/cliparts/yck/gnM/yckgnMkMi.png");
+	background-size: 50px 50px;
+    background-repeat: no-repeat;
+}
+#view{
+    width: 100%;
+    position: absolute;
+    height: 100%;
+	font-size:40px;
+	text-align:left;
+	top:50%;
+	color:#00BCD4;
+	border: 1px solid #00BCD4;
+    box-sizing: border-box;
+	
+}
+#file{
+	width: 25%;
+    position: absolute;
+    height: 16%;
+	text-align:center;
+	color:#fff;
+	background-color:#00BCD4;
+	border: 1px solid #00BCD4;
+    box-sizing: border-box;
+}
+#uploads{
+	width: 25%;
+    position: absolute;
+    height: 16%;
+	left:40%;
+	text-align:center;
+	/*color:#fff;*/
+	background-color:#00BCD4;
+	border: 1px solid #00BCD4;
+    box-sizing: border-box;
+}
+#Supload{
+    width: 100%;
+    position: absolute;
+    height: 47%;
+	border: 1px solid green;
+    box-sizing: border-box;
+}
+#Splay{
+    width: 100%;
+    position: absolute;
+    height: 100%;
+	
+    box-sizing: border-box;
+}
+#name{
+	width: 30%;
+    position: absolute;
+    height: 12%;
+	color:#00BCD4;
+	font-size:40px;
+	border: 1px solid black;/*#00BCD4*/
+    box-sizing: border-box;
+}
+#sidePanel{
+	width:20%;
+	height:50%;
+	border: 0px solid #00BCD4;
+    box-sizing: border-box;
+}
+#leftPanel{
+	width: 100%;
+    height: 100%;
+    left: 50%;
+    /*position: absolute;*/
+    top: 0%;
+    
+    box-sizing: border-box;
+}
+#names{
+	width: 50%;
+    height: 100%;
+    position: relative;
+    top: 4%;
+	overflow: scroll;
+	font-size: medium;
+     
+	}
+video{
+       float:right;
+	   height:300px;
+	   width:500px;
+	   margin:1px solid black;
+
+}
+video::-internal-media-controls-download-button {
+    display:none;
+}
+video::-webkit-media-controls-enclosure {
+    overflow:hidden;
+}
+
+video::-webkit-media-controls-panel {
+    width: calc(100% + 30px); /* Adjust as needed */
+}
+.alignment-of-list{
+             float:center;
+
+}
+#pk_video{
+  background-color: grey !important;
+  
+}
+
+  #nav_wrapper{
+ display:inline;
+}
+#nav_wrapper ul,li{
+  display:inline-block;
+  padding:15px;
+  margin:5px;
+  padding-top:5px;
+  decoration:none;
+  padding-top:10px;
+  font-size:20px;
+   
+   }
+
+
+}
+hr{
+    display:block;
+	width:100%;
+}
+#nav_wrapper a{
+   color:#2E9AFE;
+
+}
+#nav{
+  display:inline;
+}
+hr{
+     box-shadow: 10px 10px 5px #888888;
+
+}
+
+ /* logo purpos*/
+a.glyphicon.glyphicon-book{
+  
+   padding:5px;
+   margin:5px;
+   font-size:30px;
+   decoration:none;
+   color:#2E9AFE;
+}
+p.quote-font.text-center{
+    font-size:25px;
+	color:#2E9AFE;
+}
+#smile-size{
+   height:30px;
+   width:30px;
+}
+footer {
+  color:#FBFBEF;
+}
+#list-alignment li{
+   
+   display:block;
+   height:20px;
+        
+
+}
+.content-headings{
+    margin-left:40px;
+    color:#0080FF;
+}
+   
+/*****************************************************************************************************************************************/
+
+</style>
+</head>
+<script src="jquery/jquery-2.0.3.min.js"></script>
+       
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<body>
+
+<div class="container-fluid" class="row">
+
+     <div class="col-sm-4"><a href="index.html" class="glyphicon glyphicon-book " class="quote-font">RoughBook</a></div>
+	       <div class="col-sm-2"></div>
+          <div class="col-sm-6" id="nav_wrapper" class="container-fluid" style="align:inline;">
+                    <nav>
+	                  <ul>
+          
+                           <li><button class="btn btn-link"><a href="home.html"><b>Home</b></a></button></li>
+                           <li><button class="btn btn-link"><a href="#"><b>Courses</b></a></button></li>
+                           <li><button class="btn btn-link"><a href="#"><b>Videos</b></a></button></li>
+					       <li><button class="btn btn-link"><a href="editor.html"><b>Work Bench</b></a></button></li>
+                           
+						   
+	                   </ul>
+	 	            </nav> 
+	          </div>
+  	       </div>
+
+
+	</div>
+
+<div class="row">    
+<div ng-app="myApp" ng-controller="formCtrl" id="firstMyMap">
+    <div id ="header"></div>
+	<div id ="play" ng-click="play()">click me to play</div>
+	<div id ="view">
+		<div id="Supload" ng-show="uploadentry"> 
+		 
+
+        <button type="button" ng-click="upload({{file.val}})" value="Upload" ></button>
+
+        <!--ADD A PROGRESS BAR ELEMENT.-->
+        <p><progress id="pro" value="0"></progress></p>
+		</div>
+		
+		
+		<div id="Splay" ng-show ="playvideo">
+		<div id="sidePanel">
+		<div id="names" align="center">
+		<!--<ul type="none">-->
+		<a ng-repeat="val in details" ng-click="getVideo(val._id)" class="alignment-of-list">{{val._id}}</br></a>
+		<!--</ul>-->
+		</div>
+		</div>
+		</div>
+		
+		<div class="col-sm-8">
+		<div id="leftPanel">
+		<video ng-src="{{videoview}}"  autoplay controls id="pk_video"></video>
+		</div>
+		</div>
+		</div>
+	  </div>
+	</div>
+</div>
+
+
+<script>
+var app = angular.module('myApp', []);
+app.controller('formCtrl', function($scope,$http) {
+    $scope.uploadentry = false;
+	$scope.playvideo =false;
+    $scope.upload = function(file){
+	$scope.playvideo =false;
+		$scope.uploadentry = true;
+		console.log(file+"**********");
+	}
+	$scope.play = function(){
+		$scope.uploadentry = false;
+		$scope.playvideo =true;
+		var url="http://localhost:8080/MediaStreamingPrj/rest/service/getAllDocuments/colName/media";
+	$http({
+	method: 'GET',
+	url: url
+		}).then(function successCallback(response) {
+		console.log("----------",response);
+		$scope.details = response.data.data;
+		}, function errorCallback(response) {
+		console.log("-------err---",response);
+		});
+		
+	}
+	$scope.getVideo = function(id){
+	var url = "http://localhost:8080/MediaStreamingPrj/rest/service/streamVideo/"+id;
+	
+	$scope.videoview =url;
+	
+	}
+	
+});
+
+    
+
+
+
+</script>
+
+</body>
+</html>
