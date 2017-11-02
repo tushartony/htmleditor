@@ -1,0 +1,82 @@
+<html>
+    <head>
+	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+       <style> 
+textarea, iframe {
+		border:2px solid #400040;
+		height:600px;
+		width:100%;
+	}
+textarea{
+		color:#FE2E64;
+	}
+.col-sm-12{
+		padding-top:100px;
+		padding-left:50%;
+	}
+td{
+		height:1px;
+		margin:1px;
+		padding:1px;
+	}
+
+</style>
+	 </head>
+	 <body><table border="2" width="100%" height="100%"> <tr bgcolor="white"><th>
+	 <table width="100%" height="100%" border="0" cellspacing="5" cellpadding="5">
+	 <tr>
+<td width="50%" scope="col">  </td> 
+<div class="row">
+<div class="col-sm-12" >
+  <a href="http://localhost:8080/MediaStreamingPrj/home.html"  class="btn btn-link">Go Home</a>
+   <button onclick="runCode();" type="button" value= "Run Code!" class="btn btn-success"  >runcode</button>
+
+</div>
+</div>
+</tr>
+<div class="row">
+<div class="col-sm-6">
+<td>
+<form>
+<center><b>Coding Ground</b></center>
+<textarea name="sourceCode" id="sourceCode">
+
+<html>
+<head> <title>My Codes</title> </head>
+<body>
+<h1> Welcome Coders!</h1>
+<p>click run code!</p>
+</body> 
+</html>
+
+</textarea>
+</form>
+</td>
+ </div>
+ <div class="col-sm-6">
+<td><b><center>Output</b></center>
+<iframe name="targetCode"  id="targetCode"> </iframe> </td>
+</div>
+</div>
+</table>
+<script>
+function runCode() {
+var content = document.getElementById('sourceCode').value;
+var iframe = document.getElementById('targetCode');
+iframe = (iframe.contentWindow)?iframe.contentWindow:(iframe.contentDocument)? iframe.contentDocument.document: 
+iframe.contentDocument;
+ 
+iframe.document.open();
+iframe.document.write(content);
+iframe.document.close();
+return false;
+}
+runCode();
+</script>
+</tr>
+</th>
+</table>
+</body>
+</html>

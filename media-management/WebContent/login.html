@@ -1,0 +1,182 @@
+<html>
+<head>
+<style>
+#loginform{
+width: 100%;
+    height: 100%;
+    position: absolute;
+    border:1px solid red;
+}
+.login-page {
+  width: 360px;
+  padding: 8% 0 0;
+  margin: auto;
+}
+.welcomeUser{
+position: relative;
+  z-index: 1;
+  border-radius: 20%;
+  background: #FFFFFF;
+  max-width: 360px;
+  margin: 0 auto 100px;
+  padding: 45px;
+  text-align: center;
+  background: #76b852; /* fallback for old browsers */
+  background: -webkit-linear-gradient(right, #fff, #fff);
+  background: -moz-linear-gradient(right, #fff, #fff);
+  background: -o-linear-gradient(right, #fff, #fff);
+  background: linear-gradient(to left, #fff, #fff);
+     box-shadow: 0 0 20px 0 #8BC34A, 0 5px 5px 0 #8BC34A;
+}
+.form {
+  position: relative;
+  z-index: 1;
+  border-radius: 20%;
+  background: #FFFFFF;
+  max-width: 360px;
+  margin: 0 auto 100px;
+  padding: 45px;
+  text-align: center;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+.form input {
+  font-family: "Roboto", sans-serif;
+  outline: 0;
+  background: #f2f2f2;
+  width: 100%;
+  border: 0;
+  margin: 0 0 15px;
+  padding: 15px;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+.form button {
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  background: #4CAF50;
+  width: 100%;
+  border: 0;
+  padding: 15px;
+  color: #FFFFFF;
+  font-size: 14px;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+}
+.form button:hover,.form button:active,.form button:focus {
+  background: #43A047;
+}
+.form .message {
+  margin: 15px 0 0;
+  color: #b3b3b3;
+  font-size: 12px;
+}
+.form .message a {
+  color: #4CAF50;
+  text-decoration: none;
+}
+.form .register-form {
+  display: none;
+}
+.container {
+  position: relative;
+  z-index: 1;
+  max-width: 300px;
+  margin: 0 auto;
+}
+.container:before, .container:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+.container .info {
+  margin: 50px auto;
+  text-align: center;
+}
+.container .info h1 {
+  margin: 0 0 15px;
+  padding: 0;
+  font-size: 36px;
+  font-weight: 300;
+  color: #1a1a1a;
+}
+.container .info span {
+  color: #4d4d4d;
+  font-size: 12px;
+}
+.container .info span a {
+  color: #000000;
+  text-decoration: none;
+}
+.container .info span .fa {
+  color: #EF3B3A;
+}
+body {
+  background: #76b852; /* fallback for old browsers */
+  background: -webkit-linear-gradient(right, #fff, #fff);
+  background: -moz-linear-gradient(right, #fff, #fff);
+  background: -o-linear-gradient(right, #fff, #fff);
+  background: linear-gradient(to left, #fff, #fff);
+  font-family: "Roboto", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;      
+}
+</style>
+</head>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<body>
+<div class="login-page" ng-app="myApp" ng-controller="formCtrl">
+  <div class="form" ng-show= "maindiv">
+    <!-- <form class="register-form">
+      <input type="text" placeholder="name"/>
+      <input type="password" placeholder="password"/>
+      <input type="text" placeholder="email address"/>
+      <button>create</button>
+      <p class="message">Already registered? <a href="#">Sign In</a></p>
+    </form>-->
+    <form class="login-form" ng-show="loginform">
+      <input type="text" placeholder="email" ng-model="username"/>
+      <input type="password" placeholder="password" ng-model="passwords"/>
+      <button ng-click=login(username,passwords)>login</button>
+      <p class="message">Not registered? <a href="saveUserForm.html">Create an account</a></p>
+  <p class="message">{{Status}}</p>
+    </form>
+</div>
+<div class="welcomeUser" ng-show="welcomeForm">
+<p class="message"> Welcome {{nameofUser}}</div>
+</div>
+<script>
+var app = angular.module('myApp', []);
+app.controller('formCtrl', function($scope,$http) {
+    $scope.welcomeForm = false;
+$scope.loginform =true;
+$scope.maindiv = true;
+$scope.login = function(username,pwd){
+//"http://localhost:8081/loginmodule/user/auth?email=k@k.com&pwd=xyz12"
+var url = "http://localhost:8080/loginmodule/user/auth?email="+username+"&pwd="+pwd;
+console.log("##-----url--",url)
+$http({
+method: 'GET',
+url: url
+}).then(function successCallback(response) {
+var response=JSON.parse(response.data);
+if(response.Status =='Success'){
+$scope.Status = 'Successfully logged in';
+$scope.nameofUser = response.name;
+$scope.loginform = false;
+$scope.maindiv = false;
+$scope.welcomeForm = true;
+} else {
+$scope.Status = 'Invalid user';
+}
+console.log(response);
+}, function errorCallback(response) {
+$scope.Status = 'Invalid user';
+});
+}
+});
+</script>
+</body>
+
+</html>
